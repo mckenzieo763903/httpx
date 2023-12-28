@@ -120,6 +120,8 @@ class ResponseStream(SyncByteStream):
 class HTTPTransport(BaseTransport):
     def __init__(
         self,
+        verify: typing.Optional[typing.Union[str, ssl.SSLContext]] = None,
+        cert: typing.Optional[typing.Union[str, bytes]] = None,
         ssl_context: typing.Optional[ssl.SSLContext] = None,
         http1: bool = True,
         http2: bool = False,
