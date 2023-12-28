@@ -129,6 +129,8 @@ class HTTPTransport(BaseTransport):
         local_address: typing.Optional[str] = None,
         retries: int = 0,
         socket_options: typing.Optional[typing.Iterable[SOCKET_OPTION]] = None,
+        verify: typing.Union[bool, str] = True,
+        cert: typing.Union[str, typing.Tuple[str, str]] = None,
     ) -> None:
         proxy = Proxy(url=proxy) if isinstance(proxy, (str, URL)) else proxy
         ssl_context = ssl_context or SSLContext()
