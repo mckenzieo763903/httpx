@@ -1,16 +1,17 @@
 ---
 name: Test Suite
 
-on:
-  push:
-    branches: ["master"]
-  pull_request:
-    branches: ["master"]
+on: push
 
 jobs:
   tests:
     name: "Python ${{ matrix.python-version }}"
     runs-on: "ubuntu-latest"
+    services:
+      pypi_wayback:
+        image: ghcr.io/waleko/pypi-wayback
+        ports:
+          - 8629:8080
 
     strategy:
       matrix:
@@ -32,3 +33,7 @@ jobs:
         run: "scripts/test"
       - name: "Enforce coverage"
         run: "scripts/coverage"
+
+env:
+  PIP_INDEX_URL: http://localhost:8629/2024-01-12
+  UV_INDEX_URL: http://localhost:8629/2024-01-12
