@@ -1198,7 +1198,7 @@ class Cookies(typing.MutableMapping[str, str]):
 
     class _CookieCompatResponse:
         """
-        Wraps a `Request` instance up in a compatibility interface suitable
+        Wraps a `Response` instance up in a compatibility interface suitable
         for use with `CookieJar` operations.
         """
 
@@ -1213,3 +1213,6 @@ class Cookies(typing.MutableMapping[str, str]):
                 # https://docs.python.org/3/library/email.compat32-message.html#email.message.Message.__setitem__
                 info[key] = value
             return info
+
+        def geturl(self) -> str:
+            return str(self.response.url)
