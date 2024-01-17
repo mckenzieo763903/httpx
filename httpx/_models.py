@@ -1067,7 +1067,7 @@ class Cookies(typing.MutableMapping[str, str]):
             "path_specified": bool(path),
             "secure": False,
             "expires": None,
-            "discard": True,
+            "discard": False,
             "comment": None,
             "comment_url": None,
             "rest": {"HttpOnly": None},
